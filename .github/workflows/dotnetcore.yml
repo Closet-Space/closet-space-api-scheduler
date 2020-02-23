@@ -3,9 +3,12 @@ name: .NET Core
 on: [push]
 
 jobs:
-  build:
+  build_and_test:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest, windows-2019]
 
     steps:
     - uses: actions/checkout@v2
@@ -14,6 +17,6 @@ jobs:
       with:
         dotnet-version: 3.1.102
     - name: Build with dotnet
-      run: dotnet build Scheduler/Controllers/Controllers.csproj --configuration Release    #builds controller project
-    - name: .NET Core CLI
-      uses: baruchiro/github-actions@0.0.1
+      run: dotnet build Scheduler/Scheduler.sln --configuration Release
+    - name: Test with dotnet
+      run: dotnet test Scheduler/Scheduler.sln --configuration Release
