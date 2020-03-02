@@ -14,7 +14,7 @@ namespace API
             builder
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup()
-                .UseApiGateway();
+                .UseLambdaServer();
         }
     }
 }
