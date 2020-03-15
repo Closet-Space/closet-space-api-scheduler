@@ -12,12 +12,7 @@ jobs:
       - checkout
       - run:
           name: "Run Application Tests"
-          command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
-      - run:
-          name: "Print Working Directory"
-          command: pwd
-      - store_artifacts:
-          path: C:\Users\circleci\project\test_coverage
+          command: dotnet.exe test -v n Scheduler/Scheduler.sln --configuration Release
   build:
     description: Build application with Release configuration
     executor:
@@ -26,7 +21,7 @@ jobs:
       - checkout
       - run:
           name: "Build Application according to some given configuration"
-          command: dotnet.exe build --configuration Release
+          command: dotnet.exe build Scheduler/Scheduler.sln --configuration Release
 workflows:
   test_and_build:
     jobs:
