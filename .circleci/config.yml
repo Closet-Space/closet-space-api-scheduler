@@ -4,16 +4,11 @@
   win: circleci/windows@2.2.0
 
  jobs:
-   build_and_test:
+   build:
+     description: build project
      executor: win/default     
     
      steps:
-     - uses: actions/checkout@v2
-     - name: Setup .NET Core
-       uses: actions/setup-dotnet@v1
-       with:
-         dotnet-version: 3.1.102
-     - name: Build with dotnet
-       run: dotnet build Scheduler/Scheduler.sln
-     - name: Test with dotnet
-       run: dotnet test Scheduler/Scheduler.sln
+       - checkout
+       - dotnet build
+       run: dotnet build Scheduler/Scheduler.sln --configuration Release
