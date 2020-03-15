@@ -13,6 +13,8 @@ jobs:
       - run:
           name: "Run Application Tests"
           command: dotnet.exe test -v n Scheduler/Scheduler.sln --configuration Release
+      - store_artifacts:
+          path: C:\Users\circleci\project\test_coverage
   build:
     description: Build application with Release configuration
     executor:
