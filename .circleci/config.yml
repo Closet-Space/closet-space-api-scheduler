@@ -14,7 +14,7 @@ jobs:
           name: "Run Application Tests"
           command: dotnet.exe test -v n Scheduler/Scheduler.sln --configuration Release
       - store_test_results:
-          path: /tmp/test-reports
+          path: tmp/test-reports
   build:
     description: Build application with Release configuration
     executor:
@@ -25,7 +25,7 @@ jobs:
           name: "Build Application according to some given configuration"
           command: dotnet.exe build Scheduler/Scheduler.sln --configuration Release
       - store_artifacts:
-          path: /tmp/artifacts
+          path: tmp/artifacts
           destination: build
 workflows:
   test_and_build:
